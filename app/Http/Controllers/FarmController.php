@@ -7,18 +7,19 @@ use Illuminate\Support\Facades\Http;
 
 class FarmController extends Controller
 {
-    // Halaman utama CuacaTani
+   
+    // Halaman utama
     public function index()
     {
-        {
-            return view('farm', ['data' => null]);
-        }
-
-     public function analisis()
-        {
-            return view('analisis_tani');
-        }
+        return view('farm', ['data' => null]);
     }
+
+    // Halaman Analisis Tani
+    public function analisis()
+    {
+        return view('analisis_tani');
+    }
+
 
     // Proses form petani
     public function search(Request $request)

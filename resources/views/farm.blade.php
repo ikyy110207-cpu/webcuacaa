@@ -162,10 +162,15 @@
         </form>
     </div>
 
-    
+    {{-- ERROR --}}
+    @if(isset($error) && $error)
         <div class="error-card">😕 {{ $error }}</div>
+    @endif
 
-        
+    {{-- HASIL --}}
+    @if(isset($data) && $data)
+
+        {{-- Info Lahan --}}
         <div class="lahan-info">
             <div class="lahan-item">
                 <div class="lahan-label">📍 Lokasi</div>
