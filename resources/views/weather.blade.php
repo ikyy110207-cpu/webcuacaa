@@ -144,6 +144,13 @@
         <p>Informasi cuaca real-time seluruh Indonesia & dunia</p>
     </header>
 
+<div style="text-align:center; margin-bottom:20px;">
+    <a href="{{ route('farm.index') }}"
+       style="display:inline-block; background:linear-gradient(135deg,#a8f5a0,#f5e642); color:#1a3a1a; padding:10px 28px; border-radius:40px; font-weight:700; font-size:0.9rem; text-decoration:none;">
+        🌾 Buka CuacaTani — Rekomendasi Petani
+    </a>
+</div>
+
     <form action="{{ route('weather.search') }}" method="POST" class="search-box">
         @csrf
         <input type="text" name="city"
@@ -159,7 +166,6 @@
         </div>
 
     @elseif(isset($weather['city']))
-
         <div class="weather-main">
             <div class="weather-left">
                 <div class="city-name">📍 {{ $weather['city'] }}</div>
