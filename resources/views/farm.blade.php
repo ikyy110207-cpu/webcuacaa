@@ -107,9 +107,10 @@
             font-weight:500;
             line-height:1.5;
         }
-        .rekomendasi.aman  { background:rgba(80,200,80,0.2);  border:1px solid rgba(80,200,80,0.4); }
-        .rekomendasi.tunda { background:rgba(255,80,80,0.2);  border:1px solid rgba(255,80,80,0.4); }
-        .rekomendasi.siram { background:rgba(80,160,255,0.2); border:1px solid rgba(80,160,255,0.4); }
+        /* Berikan spasi sebelum titik kedua */
+        .rekomendasi .aman { background: rgba(80,200,80,0.2); border: 1px solid rgba(80,200,80,0.4); }
+        .rekomendasi .tunda { background: rgba(255,80,80,0.2); border: 1px solid rgba(255,80,80,0.4); }
+        .rekomendasi .siram { background: rgba(80,160,255,0.2); border: 1px solid rgba(80,160,255,0.4); }
 
         footer { text-align:center; margin-top:30px; padding-bottom:20px; color:rgba(255,255,255,0.3); font-size:0.8rem; }
 
@@ -155,6 +156,17 @@
                     <select name="komoditas">
                         <option value="padi"   {{ (isset($data['komoditas']) && $data['komoditas']==='padi')   ? 'selected' : '' }}>🌾 Padi</option>
                         <option value="jagung" {{ (isset($data['komoditas']) && $data['komoditas']==='jagung') ? 'selected' : '' }}>🌽 Jagung</option>
+                        <option value="cabai"  {{ (isset($data['komoditas']) && $data['komoditas']==='cabai')   ? 'selected' : '' }}>🌶️ Cabai</option>
+                        <option value="tomat"  {{ (isset($data['komoditas']) && $data['komoditas']==='tomat')   ? 'selected' : '' }}>🍅 Tomat</option>
+                        <option value="bayam"  {{ (isset($data['komoditas']) && $data['komoditas']==='bayam')   ? 'selected' : '' }}>🥬 Bayam</option>
+                        <option value="kangkung"   {{ (isset($data['komoditas']) && $data['komoditas']==='kangkung')   ? 'selected' : '' }}>🥬 Kangkung</option>
+                        <option value="sawi"   {{ (isset($data['komoditas']) && $data['komoditas']==='sawi')   ? 'selected' : '' }}>🥬 Sawi</option>
+                        <option value="terong" {{ (isset($data['komoditas']) && $data['komoditas']==='terong')   ? 'selected' : '' }}>🍆 Terong</option>
+                        <option value="wortel" {{ (isset($data['komoditas']) && $data['komoditas']==='wortel')   ? 'selected' : '' }}>🥕 Wortel</option>
+                        <option value="pisang" {{ (isset($data['komoditas']) && $data['komoditas']==='pisang')   ? 'selected' : '' }}>🍌 Pisang</option>
+                        <option value="mangga" {{ (isset($data['komoditas']) && $data['komoditas']==='mangga')   ? 'selected' : '' }}>🥭 Mangga</option>
+                        <option value="pepaya" {{ (isset($data['komoditas']) && $data['komoditas']==='pepaya')   ? 'selected' : '' }}>🍈 Pepaya</option>
+                        <option value="semangka"   {{ (isset($data['komoditas']) && $data['komoditas']==='semangka')   ? 'selected' : '' }}>🍉 Semangka</option>
                     </select>
                 </div>
             </div>
@@ -201,7 +213,7 @@
                 <div class="fc-hum">💧 {{ $day['humidity'] }}%</div>
             </div>
             <div class="rekomendasi {{ $day['status'] }}">
-                {{ $day['rekomendasi'] }}
+                {{ $day['rekomendasi']['teks'] ?? $day['rekomendasi'] }}
             </div>
         </div>
         @endforeach

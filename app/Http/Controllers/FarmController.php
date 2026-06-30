@@ -27,7 +27,7 @@ class FarmController extends Controller
         $request->validate([
             'city'      => 'required|string|max:100',
             'luas'      => 'required|numeric|min:0.1',
-            'komoditas' => 'required|in:padi,jagung',
+            'komoditas' => 'required|string',
         ]);
 
         $city      = $request->input('city');
@@ -89,12 +89,13 @@ class FarmController extends Controller
 
             return view('farm', [
                 'data' => [
-                    'city'      => $city,
-                    'luas'      => $luas,
-                    'komoditas' => $komoditas,
-                    'forecast'  => $forecast,
+                    'city'       => $city,
+                    'luas'       => $luas,
+                    'komoditas'  => $komoditas,
+                    'forecast'   => $forecast,
                 ],
-                'error' => null,
+                'rekomendasi' => $forecast, // Tambahkan baris ini agar teks rekomendasi bisa dipanggil di blade
+                'error'       => null,
             ]);
 
         } catch (\Exception $e) {
@@ -136,6 +137,86 @@ class FarmController extends Controller
                 return ['status' => 'aman', 'teks' => '✅ Cuaca mendung — aman untuk pemupukan. Hindari pupuk cair berlebihan.'];
             } else {
                 return ['status' => 'aman', 'teks' => '✅ Cuaca cerah — waktu terbaik pemupukan dan penyemprotan pestisida jagung.'];
+            }
+        }
+
+        // ---- CABAI ----
+        if ($komoditas === 'cabai') {
+            if ($isHujan) {
+                return ['status' => 'tunda', 'teks' => '🌧️ Tunda penyemprotan karena hujan.'];
+            } elseif ($isPanas) {
+                return ['status' => 'siram', 'teks' => '💧 Lakukan penyiraman tanaman cabai.'];
+            } else {
+                return ['status' => 'aman', 'teks' => '✅ Cuaca baik untuk tanaman cabai.'];
+            }
+        }
+
+        // ---- TOMAT ----
+        if ($komoditas === 'tomat') {
+            if ($isHujan) {
+                return ['status' => 'tunda', 'teks' => '🌧️ Tunda pemupukan karena hujan.'];
+            } elseif ($isPanas) {
+                return ['status' => 'siram', 'teks' => '💧 Siram tanaman tomat.'];
+            } else {
+                return ['status' => 'aman', 'teks' => '✅ Kondisi cuaca cocok untuk tomat.'];
+            }
+        }
+
+        // ---- BAYAM ----
+        if ($komoditas === 'bayam') {
+            return ['status' => 'aman', 'teks' => '🥬 Bayam tumbuh baik pada kondisi cuaca saat ini.'];
+        }
+
+        // ---- KANGKUNG ----
+        if ($komoditas === 'kangkung') {
+            return ['status' => 'aman', 'teks' => '🥬 Kangkung membutuhkan kelembapan yang cukup.'];
+        }
+
+        // ---- SAWI ----
+        if ($komoditas === 'sawi') {
+            if ($isPanas) {
+                return ['status' => 'siram', 'teks' => '💧 Lakukan penyiraman pada tanaman sawi.'];
+            } else {
+                return ['status' => 'aman', 'teks' => '✅ Kondisi cuaca baik untuk sawi.'];
+            }
+        }
+
+        // ---- TERONG ----
+        if ($komoditas === 'terong') {
+            return ['status' => 'aman', 'teks' => '🍆 Terong dapat tumbuh dengan baik pada cuaca ini.'];
+        }
+        
+
+        // ---- WORTEL ----
+        if ($komoditas === 'wortel') {
+            return ['status' => 'aman', 'teks' => '🥕 Kondisi cuaca sesuai untuk tanaman wortel.'];
+        }
+
+        // ---- PISANG ----
+        if ($komoditas === 'pisang') {
+            if ($isPanas) {
+                return ['status' => 'siram', 'teks' => '💧 Tambahkan penyiraman pada tanaman pisang.'];
+            } else {
+                return ['status' => 'aman', 'teks' => '🍌 Cuaca mendukung pertumbuhan pisang.'];
+            }
+        }
+        
+        // ---- MANGGA ----
+        if ($komoditas === 'mangga') {
+             return ['status' => 'aman', 'teks' => '🥭 Kondisi cuaca baik untuk tanaman mangga.'];
+        }
+
+        // ---- PEPAYA ----
+        if ($komoditas === 'pepaya') {
+             return ['status' => 'aman', 'teks' => '🍈 Cuaca mendukung pertumbuhan pepaya.'];
+        }
+
+        // ---- SEMANGKA ----
+        if ($komoditas === 'semangka') {
+            if ($isPanas) {
+                 return ['status' => 'aman', 'teks' => '🍉 Cuaca panas baik untuk pertumbuhan semangka.'];
+            } else {
+                return ['status' => 'pantau', 'teks' => '☁️ Pantau kelembapan lahan semangka.'];
             }
         }
 
