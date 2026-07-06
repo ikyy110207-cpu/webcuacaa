@@ -115,9 +115,9 @@ class FarmController extends Controller
             if ($isHujan) {
                 return ['status' => 'tunda', 'teks' => '🚫 Tunda pemupukan — hujan akan melarutkan pupuk. Cukupi drainase sawah.'];
             } elseif ($isPanas && $humidity < 60) {
-                return ['status' => 'siram', 'teks' => '💧 Lakukan penyiraman — cuaca panas & kering, sawah butuh air tambahan.'];
+                return ['status' => 'siram', 'teks' => '💦 Lakukan penyiraman — cuaca panas & kering, sawah butuh air tambahan.'];
             } elseif ($isPanas) {
-                return ['status' => 'siram', 'teks' => '💧 Pantau ketersediaan air sawah — suhu tinggi meningkatkan evaporasi.'];
+                return ['status' => 'siram', 'teks' => '💦 Pantau ketersediaan air sawah — suhu tinggi meningkatkan evaporasi.'];
             } elseif ($isMendung) {
                 return ['status' => 'aman', 'teks' => '✅ Cuaca mendung — cocok untuk pemupukan. Pupuk terserap optimal.'];
             } else {
