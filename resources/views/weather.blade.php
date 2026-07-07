@@ -162,7 +162,7 @@
 
     @if(isset($weather['error']))
         <div class="error-card">
-            <span>😕</span>{{ $weather['error'] }}
+            <span>🤨</span>{{ $weather['error'] }}
         </div>
 
     @elseif(isset($weather['city']))
