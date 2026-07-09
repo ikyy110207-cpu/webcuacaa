@@ -140,7 +140,7 @@
 <div class="container">
 
     <header class="app-header">
-        <h1>🌤️ CuacaKu</h1>
+        <h1>🌤️ CuacaKu88</h1>
         <p>Informasi cuaca real-time seluruh Indonesia & dunia</p>
     </header>
 
